@@ -5,19 +5,18 @@ const Restaurants = ({ restaurants }) => {
   return (
     <div className="flex">
       <div className="flex flex-wrap justify-center gap-4">
-        
         {restaurants &&
           restaurants.map((restaurant) => {
             return (
               <Card
                 key={restaurant.id}
+                id={restaurant.id}
                 title={restaurant.title}
                 type={restaurant.type}
                 img={restaurant.img}
               />
             );
           })}
-//111
       </div>
     </div>
   );

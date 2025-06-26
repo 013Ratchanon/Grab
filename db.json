@@ -3,7 +3,7 @@
     {
       "id": "1",
       "title": "Raku Tea 楽茶",
-      "type": "ชาไข่มุก",
+      "type": "ชานมไข่มุกกก",
       "img": "https://food-cms.grab.com/compressed_webp/merchants/3-C33KAN31RY2DFE/hero/ca5420a9-f667-4e60-a17b-2f04fbd05cd6__store_cover__2023__03__25__08__28__32.webp"
     },
     {
@@ -55,24 +55,11 @@
       "img": "https://food-cms.grab.com/compressed_webp/merchants/3-C2EJTYC2ENMBEA/hero/a701098f0c3245c6bb29334ef2293054_1608967477104520062.webp"
     },
     {
-      "id": "444f",
-      "title": "",
-      "type": "",
-      "img": ""
-    },
-    {
       "id": "b1c1",
       "title": "ครัวลุงรงค์",
       "type": "อาหารไทย",
       "img": "https://static.thairath.co.th/media/Dtbezn3nNUxytg04OMALw8OajanwFo8JxUuoZdWWJt3q9D.jpg"
-    },
-    {
-      "id": "e2ae",
-      "title": "ครัวลุงหนุ่ม",
-      "type": "อาหารอีสาน",
-      "img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS3QAOpuQlzgC0HGL6mr6Qe0DFF--VSUXXZdQ&s"
     }
-    
   ],
   "users": [
     {

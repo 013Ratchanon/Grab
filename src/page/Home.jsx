@@ -1,8 +1,25 @@
 import React, { useState, useEffect } from "react";
-import NavBar from "../components/NavBar";
+
 import Restaurants from "../components/Restaurants";
 const Home = () => {
   const [restaurants, setRestaurants] = useState([]);
+  // const [keyword, setKeyword] = useState("");
+  const [filterdRestaurants, setfilterdRestaurants] = useState([]);
+
+  const handleSearch = (keyword) => {
+    if (keyword === "") {
+      setfilterdRestaurants(restaurants);
+      return;
+    }
+    const result = restaurants.filter((restaurant) => {
+      return (
+        restaurant.title.toLowerCase().includes(keyword.toLowerCase()) ||
+        restaurant.type.toLowerCase().includes(keyword.toLowerCase())
+      );
+    });
+    setfilterdRestaurants(result);
+    // console.log(result);
+  };
   useEffect(() => {
     //call api: getAllRestaurants
     fetch("http://localhost:5000/restaurants")
@@ -13,6 +30,7 @@ const Home = () => {
       .then((response) => {
         //save to state
         setRestaurants(response);
+        setfilterdRestaurants(response);
       })
       .catch((err) => {
         //catch error
@@ -21,8 +39,6 @@ const Home = () => {
   }, []);
   return (
     <div className="container mx-auto">
-      <NavBar />
-
       <div>
         <h1 className="title justify-center text-3xl text-center m-5 p5 ">
           Grab Restaurant
@@ -47,11 +63,17 @@ const Home = () => {
               <path d="m21 21-4.3-4.3"></path>
             </g>
           </svg>
-          <input type="search" required placeholder="Search" />
+          <input
+            type="search"
+            name="keyword"
+            onChange={(e) => handleSearch(e.target.value)}
+            required
+            placeholder="Search"
+          />
         </label>
       </div>
-      
-      <Restaurants restaurants={restaurants} />
+
+      <Restaurants restaurants={filterdRestaurants} />
     </div>
   );
 };

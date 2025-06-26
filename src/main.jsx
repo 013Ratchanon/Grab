@@ -1,11 +1,13 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import "./index.css";
-import Home from "./page/Home";
-import AddRestaurant from "./page/AddRestaurant";
+import router from "./routes/Router";
+import { RouterProvider } from "react-router";
+import NavBar from "./components/NavBar";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <AddRestaurant />
+    <NavBar />
+    <RouterProvider router={router} />
   </StrictMode>
 );
