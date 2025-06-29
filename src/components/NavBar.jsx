@@ -40,9 +40,9 @@ const NavBar = () => {
             tabIndex={0}
             className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
           >
-            {menuItem.map((item) => {
+            {menuItem.map((item,i) => {
               return (
-                <li>
+                <li key={i}>
                   <a href={item.url}>{item.name}</a>
                 </li>
               );
@@ -55,9 +55,9 @@ const NavBar = () => {
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">
-          {menuItem.map((item) => {
+          {menuItem.map((item,i) => {
             return (
-              <li>
+              <li key={i}>
                 <a href={item.url}>{item.name}</a>
               </li>
             );

@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useState} from "react";
 
 const Card = (props) => {
   const Delete = async (id) => {
@@ -7,12 +7,61 @@ const Card = (props) => {
         method: "DELETE",
       });
       if (response.ok) {
-        alert("Restaurant Delete successfully!!");
+        // alert("Restaurant Delete successfully!!");
         window.location.reload();
       }
     } catch (error) {
       console.log(error);
     }
+  };
+  const styles = {
+    overlay: {
+      position: "fixed",
+      top: 0,
+      left: 0,
+      right: 0,
+      bottom: 0,
+      backgroundColor: "rgba(0,0,0,0.5)",
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+    },
+    dialog: {
+      background: "white",
+      padding: "20px",
+      borderRadius: "8px",
+      textAlign: "center",
+      color: "red"
+    },
+  };
+
+  const ConfirmDialog = ({ message, onConfirm, onCancel }) => {
+    return (
+      <div className="z-50" style={styles.overlay}>
+        <div style={styles.dialog} className="space-x-4 space-y-2">
+          <p>{message}</p>
+          <button onClick={onConfirm} className="border px-4 py-2 bg-indigo-500 text-white hover:bg-indigo-700 cursor-pointer">ตกลง</button>
+          <button onClick={onCancel} className="border px-4 py-2 bg-red-500 text-white hover:bg-red-700 cursor-pointer">ยกเลิก</button>
+        </div>
+      </div>
+    );
+  };
+
+  const [showConfirm, setShowConfirm] = useState(false);
+
+  const handleDelete = () => {
+    setShowConfirm(true);
+  };
+
+  const confirmDelete = (id) => {
+    // console.log(id)
+   Delete(id)
+    setShowConfirm(false);
+    alert("ลบเรียบร้อย!");
+  };
+
+  const cancelDelete = () => {
+    setShowConfirm(false);
   };
   return (
     <div className="card bg-base-100 w-96 shadow-sm">
@@ -26,15 +75,19 @@ const Card = (props) => {
         </h2>
         <p>{props.type}</p>
         <div className="card-actions justify-end">
-          <button
-            onClick={() => Delete(props.id)}
-            class="btn btn-soft btn-error"
-          >
+          <div onClick={handleDelete} className="btn btn-outline btn-error">
             Delete
-          </button>
-          <a href={"/update/" + props.id} class="btn btn-outline btn-warning">
+          </div>
+          <a href={"/update/" + props.id} className="btn btn-outline btn-warning">
             Edit
           </a>
+           {showConfirm && (
+            <ConfirmDialog
+              message="ต้องการลบหรือไม่"
+              onConfirm={() => confirmDelete(props.id)}
+              onCancel={cancelDelete}
+            />
+          )}
         </div>
       </div>
     </div>
